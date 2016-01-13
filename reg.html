@@ -36,13 +36,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Home</a>
+          <a class="navbar-brand" href="index">Home</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="CV.php">CV</a></li>
-            <li><a href="forma.php">Forma</a></li>
-            <li><a href="gallery.php">Galerija</a></li>
+            <li><a href="CV">CV</a></li>
+            <li><a href="forma">Forma</a></li>
+            <li><a href="gallery">Galerija</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -50,9 +50,25 @@
 
     <div class="container">
 
-      <div class="wrapper">
-        <h1>Laipni lūdzu manā mājaslappā</h1>
-        <p class="lead">Šajā lappusē Jūs varat atrast manu anketu<br> un CV.</p>
+      <div class="cbus">
+        <h2>Reģistrācija</h2>
+    <form id="form" action="save_user" method="post">
+    <!--**** save_user.php - это адрес обработчика.  То есть, после нажатия на кнопку "Зарегистрироваться", данные из полей  отправятся на страничку save_user.php методом "post" ***** -->
+<p>
+    <input name="login" type="text" size="15" maxlength="15" placeholder="Lietotājvārds">
+    </p>
+<!--**** В текстовое поле (name="login" type="text") пользователь вводит свой логин ***** -->
+<p>
+    <input name="password" type="password" size="15" maxlength="15" placeholder="Parole">
+    </p>
+<!--**** В поле для паролей (name="password" type="password") пользователь вводит свой пароль ***** --> 
+<p>
+    <input class="submit" type="submit" name="submit" value="Reģistrēties">
+<!--**** Кнопочка (type="submit") отправляет данные на страничку save_user.php ***** --> 
+</p>
+</form>
+
+
       </div>
 
     </div><!-- /.container -->

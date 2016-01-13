@@ -1,3 +1,7 @@
+<?php
+    //  вся процедура работает на сессиях. Именно в ней хранятся данные  пользователя, пока он находится на сайте. Очень важно запустить их в  самом начале странички!!!
+    session_start();
+    ?>
 <!DOCTYPE html>
 <html lang="lv">
   <head>
@@ -36,13 +40,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Home</a>
+          <a class="navbar-brand" href="index">Home</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="CV.php">CV</a></li>
-            <li><a href="forma.php">Forma</a></li>
-            <li><a href="gallery.php">Galerija</a></li>
+            <li><a href="CV">CV</a></li>
+            <li><a href="forma">Forma</a></li>
+            <li><a href="gallery">Galerija</a></li>
+            <?php
+    if (empty($_SESSION['login']) or empty($_SESSION['id']))
+    {
+    ;
+    }
+    else
+    {
+
+    // Если не пусты, то мы выводим ссылку
+    "<li><a href='hidden'>hiddenpage</a></li>";
+    }
+    ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -50,24 +66,36 @@
 
     <div class="container">
 
-      <div class="wrapper">
-      <h1>Arturs Dmitriconoks</h1>
-        <article>
-        <h1>VAKANCE</h1>
-        <p>programmetājs</p>
-      </article>
-        <article>
-        <h1>DARBA PIEREDZE</h1>
-        <p>C++, html5, MySql, u.t.t. </p>
-      </article>
-        <article>
-        <h1>DZIMTĀ VALODA</h1>
-        <p>krievu/latviešu</p>
-      </article>
-      <article>
-        <h1>Komunikācijas prasmes </h1>
-        <p>labas saskarsmes prasmes, kas iegūtas, strādājot par servisa inženieri spēja prezentēt savas idejas un priekšlikumus </p>
-      </article>
+      <div class="cbord">
+ <form id="form" action="testreg" method="post">
+
+    <!--****  testreg.php - это адрес обработчика. То есть, после нажатия на кнопку  "Войти", данные из полей отправятся на страничку testreg.php методом  "post" ***** -->
+ <p>
+    <input name="login" type="text" size="15" maxlength="15" placeholder="Lietotājvārds">
+    </p>
+    <p>
+    <input name="password" type="password" size="15" maxlength="15" placeholder="Parole">
+    </p>
+    <p>
+    <input type="submit" name="submit" value="Ieiet">
+<br>
+<a href="reg">Reģistrācija</a> 
+    </p></form>
+    <br>
+    <?php
+    if (empty($_SESSION['login']) or empty($_SESSION['id']))
+    {
+    echo "Jūs apmeklējiet mājaslapu, kā GUEST<br><a href='#'>links nav pieejams</a>";
+    }
+    else
+    {
+
+    // Если не пусты, то мы выводим ссылку
+    echo "Jūs apmeklējiet mājaslapu, kā ".$_SESSION['login']."<br><a  href='testpage'>links ieejams, ja Jūs ieejat sistēmā</a>";
+    }
+    ?>
+
+
       </div>
 
     </div><!-- /.container -->
@@ -108,6 +136,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
+      <script src="dist/js/jquery.validate.js"></script>
   </body>
 
 </html>
